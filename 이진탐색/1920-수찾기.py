@@ -1,27 +1,26 @@
+# 버블정렬로 오름차순 -> 이진탐색을 위해서
+# 시간초과 이슈
+
 N = int(input())
 A = list(map(int, input().split()))
 M = int(input())
 B = list(map(int, input().split()))
 
-for i in range(N-1):
-  for j in range(N-1, i, -1):
-    if A[j - 1] > A[j]:
-      A[j - 1], A[j] = A[j], A[j-1]
+# 따라서 sorted 함수를 사용하여 시간복잡도 이슈 해결
+A = sorted(A)
 
-pl = 0
-pr = N-1
-key = 0
-
-while True:
-  pc = (pl + pr) // 2
-  if A[pc] == B[key]:
-    print(1)
-  elif A[pc] < B[key]:
-    pl = pc + 1
-  else:
-    pr = pc-1
-  if pl > pr:
-    print(0)
-    break
-  key += 1
-
+for key in range(M):
+  pl = 0
+  pr = len(A)-1
+  while True:
+    pc = (pl + pr) // 2
+    if A[pc] == B[key]:
+      print(1)
+      break
+    elif A[pc] < B[key]:
+      pl = pc + 1
+    else:
+      pr = pc - 1
+    if pl > pr:
+      print(0)
+      break
