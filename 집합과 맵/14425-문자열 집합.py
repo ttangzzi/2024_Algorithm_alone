@@ -12,4 +12,4 @@ for _ in range(M):
   test.append(sys.stdin.readline())
 
 set_S = set(S)
-print(len(test.intersection(set_S)))
+print(len(set_S.intersection(list)))
